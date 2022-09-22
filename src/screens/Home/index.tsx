@@ -1,4 +1,4 @@
-import { Image, FlatList } from 'react-native';
+import { Image, FlatList, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 
@@ -12,9 +12,8 @@ import { useEffect, useState } from 'react';
 
 import { styles } from './styles';
 
-export function Home() {
+export function Home(props: any) {
   const [games, setGames] = useState<GameCardProps[]>([]);
-
   const navigation = useNavigation();
 
   function handleOpenGame({ id, title, banner }: GameCardProps ){
@@ -34,6 +33,16 @@ export function Home() {
       source={logoImg}
       style={styles.logo}
       />
+
+
+      <Image 
+      source={{uri:`https://cdn.discordapp.com/avatars/${props.route.params.id}/${props.route.params.avatar}.png`}}
+      style={styles.avatar}
+      />
+
+     <Text style={styles.userName}>
+      {`Bem vindo(a) ${props.route.params.username}`}
+     </Text>
 
       <Heading 
       title="Encontre seu duo!"
